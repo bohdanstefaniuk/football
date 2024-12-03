@@ -1,0 +1,37 @@
+@page "/upcoming"
+@model UpcomingModel
+@{
+    ViewData["Title"] = "Native Stats - Upcoming Matches";
+}
+
+<section id="leagues">
+    @foreach (var league in Model.Leagues)
+    {
+        @if (!league.Matches.Any())
+        {
+            <p>No matches available for @league.Name</p>
+            continue;
+        }
+
+        <league-card name="@league.Name" country="@league.Country">
+            @foreach(var match in league.Matches)
+            {
+                <match-card
+                    home-team="@match.HomeTeamName"
+                    home-team-crest="@match.HomeTeamCrestUrl"
+                    away-team="@match.AwayTeamName"
+                    away-team-crest="@match.AwayTeamCrestUrl"
+                    match-time="@match.Date.ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ssZ")"
+                    win-odds="@match.WinOdds"
+                    draw-odds="@match.DrawOdds"
+                    lose-odds="@match.LoseOdds"
+                    home-team-score="@match.HomeTeamScore"
+                    away-team-score="@match.AwayTeamScore"
+                    winner="@match.Winner"
+                    country="@match.Country">
+                </match-card>
+            }
+        </league-card>
+    }
+</section>
+

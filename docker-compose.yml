@@ -1,0 +1,14 @@
+﻿services:
+  football:
+    image: football
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+        - "8080:8080"
+    environment:
+        - ASPNETCORE_ENVIRONMENT=Release
+        - ASPNETCORE_URLS=http://+:8080
+        - ExternalServices__FootballDataApiKey=722a8a573a494659896e130715d4c82f
+    volumes:
+      - ./app.db:/app/app.db

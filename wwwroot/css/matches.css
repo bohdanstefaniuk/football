@@ -1,0 +1,22 @@
+#leagues {
+  padding: 16px;
+  overscroll-behavior: none;
+}
+
+.matches-container {
+  display: flex;
+  overflow-x: auto;
+  gap: 12px;
+  padding: 8px 0;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  flex-wrap: nowrap;
+  white-space: nowrap;
+  scroll-behavior: smooth;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+}
+
+.matches-container::-webkit-scrollbar {
+  display: none;
+}
