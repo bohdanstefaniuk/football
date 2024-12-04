@@ -39,15 +39,16 @@ public class MatchesService
             .Include(x => x.League)
             .Include(x => x.HomeTeam)
             .Include(x => x.AwayTeam)
-            .Where(predicate)
-            .Skip(0)
-            .Take(Constants.MatchesCountPerPage);
+            .Where(predicate);
 
         query = descending
             ? query.OrderByDescending(x => x.Date)
             : query.OrderBy(x => x.Date);
 
-        var matches = await query.ToArrayAsync();
+        var matches = await query
+            .Skip(0)
+            .Take(Constants.MatchesCountPerPage)
+            .ToArrayAsync();
 
         return matches
             .GroupBy(x => x.LeagueId)
