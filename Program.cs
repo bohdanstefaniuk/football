@@ -1,5 +1,6 @@
 using Football.Data;
 using Football.ExternalServices;
+using Football.Jobs;
 using Football.Services;
 using Microsoft.EntityFrameworkCore;
 
@@ -17,6 +18,7 @@ builder.Services.AddWebOptimizer(pipeline =>
 
 builder.Services.AddExternalServices(builder.Configuration);
 builder.Services.AddBusinessServices();
+builder.Services.AddJobs();
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<DatabaseContext>(options =>
